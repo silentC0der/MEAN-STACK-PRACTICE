@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>MY APP</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script type="text/javascript" src="./public/js/controllers/eventController.js"></script>
+
+    <body ng-app="myApp">
+
+        <div class="wrap" ng-controller="myCtrl">
+            <div class="search_wrap">
+                <div>
+                    <input type="text" placeholder="Please Enter event name" ng-model="eventName">
+                </div>
+                <br>
+                <div>
+                    <input type="text" placeholder="Please Enter orgination name" ng-model="orginationName">
+                </div>
+                <br>
+                <div>
+                    <input type="text" placeholder="Please Enter event location" ng-model="eventLocation">
+                </div>
+                <br>
+                <div>
+                    <button class="large_button icn_Delete_Popup" ng-click="addEvent()">Submit</button>
+                </div>
+
+                <div class="search_results" ng-hide="myMovieDetails !== ''">
+                    <div class="results_common" ng-repeat="x in myMovie track by $index" ng-click="submit(x.imdb,x.year)">
+                        <div class="poster_img" style="background:url({{x.poster}})no-repeat; background-position:center;background-size:cover"></div>
+                        <div class="results_title" all-data="{{x}}">
+                            <span>{{x.title}}</span>
+                            <span ng-if="x.type=='movie'">({{x.year}})</span>
+                            <span ng-if="x.type=='series'">({{x.year.from}})</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- <div class="circle" ng-repeat="x in myMovie">{{x.title}}> -->
+            </div>
+            <div ng-hide="myMovieDetails == '' || myMovie ==''">
+                <div class="card transition" style="background:url({{myMovieDetails.poster}})no-repeat; background-position:center;background-size:cover"></div>
+                <!-- <h2 class="transition">{{myMovieDetails.title}}</h2> -->
+                <div>
+                    <iframe ng-if="url !== ''" width="420" height="345" ng-src="{{url}}" allowfullscreen>
+                    </iframe>
+                    <span>
+                        <h4>TITLE</h4>
+                        <p>{{myMovieDetails.title}}</p>
+                    </span>
+                    <!-- <span><h4>Stars</h4><p>{{myMovieDetails.actors}}</p></span> -->
+                    <span>
+                        <h4>Stars</h4>
+                        <p ng-repeat="exercise in myMovieDetails.actors track by $index">{{exercise}}</p>
+                    </span>
+
+                    <span>
+                        <h4>Directors</h4>
+                        <p>{{myMovieDetails.director}}</p>
+                    </span>
+                    <!-- <span><h4>Writer</h4><p>{{myMovieDetails.writers}}</p></span> -->
+                    <span>
+                        <h4>Writer</h4>
+                        <p ng-repeat="wrt in myMovieDetails.writers track by $index">{{wrt}}</p>
+                    </span>
+                    <span>
+                        <h4>Rating</h4>
+                        <p>{{myMovieDetails.imdb.rating}}</p>
+                    </span>
+                    <span>
+                        <h4>Plot</h4>
+                        <p>{{myMovieDetails.plot}}</p>
+                    </span>
+                    <span>
+                        <h4>Released</h4>
+                        <p>{{myMovieDetails.released}}</p>
+                    </span>
+                    <span>
+                        <h4>MOVIE/SERIES</h4>
+                        <p>{{myMovieDetails.type}}</p>
+                    </span>
+                    <div class="cta-container transition">
+                        <a href="#" class="cta">Call to action</a>
+                    </div>
+                    <div class="card_circle transition"></div>
+
+                </div>
+
+
+
+
+            </div>
+
+
+
+    </body>
+
+
+</html>
